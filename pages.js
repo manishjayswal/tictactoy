@@ -10,7 +10,7 @@ function display_input(box){
     var element = document.getElementById(box);
 
     //If the element already contains something, then we don't change it
-    if(element.innerHTML != "") return;
+    if(box_f[box] != "") return;
     if(flag==1) return;
     counter++;
     if(player == 1) {
@@ -43,11 +43,19 @@ function display_input(box){
 }
 
 function mouseOver(id) {
-    document.getElementById(id).style.fontSize="500%";
+    if(box_f[id]=="" && flag!=1){
+        if(player==1){
+          document.getElementById(id).innerHTML =  "X".fontsize("500%");
+        }
+          else if (player==2){
+             document.getElementById(id).innerHTML = "O".fontsize("500%");      
+            }
+    }
 }
   
 function mouseOut(id) {
-    document.getElementById(id).style.fontSize="200%";
+    if(box_f[id]=="")
+         document.getElementById(id).innerHTML = "";
   }
   
 
