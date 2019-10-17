@@ -25,6 +25,7 @@ function display_input(box){
         console.log(box_f[box]);
         player = 1;
     }
+
     if (wincase("X"))
     {
     console.log("Player 1 is winner");
@@ -42,19 +43,11 @@ function display_input(box){
 }
 
 function mouseOver(id) {
-   if(box_f[id]==""){
-       if(player==1){
-         document.getElementById(id).innerHTML =  "X".fontsize("500%");
-       }
-         else if (player==2){
-            document.getElementById(id).innerHTML = "O".fontsize("500%");      
-        
-        }
-    }
+    document.getElementById(id).style.fontSize="500%";
 }
   
 function mouseOut(id) {
-    document.getElementById(id).style.fontSize("200%");
+    document.getElementById(id).style.fontSize="200%";
   }
   
 
