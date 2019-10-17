@@ -1,0 +1,30 @@
+body {
+    background-color:#000;
+}
+h1 {
+    text-align: center;
+    color: cornflowerblue;
+}
+
+button, td {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 40px;
+    color: beige ;
+}
+
+table {
+    margin: 5px auto;
+}
+
+.vert {
+    border-left: 3px solid coral ;
+    border-right: 3px solid coral;
+}
+
+.hori {
+    border-top: 3px solid coral;
+    border-bottom: 3px solid coral;
+}
+
