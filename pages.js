@@ -1,44 +1,57 @@
  var player = 1;
  var flag=0;
  var counter=0;
-var box_f = ["","","",
-                "","","",
-                "","",""];
-function display_input(box){ 
-    var element = document.getElementById(box);
+var box_f = ["","","","","","","","",""];
 
-    //If the element already contains something, then we don't change it
-    if(box_f[box] != "") return;
-    if(flag==1) return;
-    counter++;
-    if(player == 1) {
-        element.innerHTML = "X";
-        box_f[box]="X";
-         console.log(box_f[box]);
-        player = 2;
-    }
-    else {
-        element.innerHTML = "O";
-        box_f[box]="O";
-        console.log(box_f[box]);
-        player = 1;
-    }
+$(document).ready(function(){
 
-    if (wincase("X"))
-    {
-    console.log("Player 1 is winner");
-    window.alert("Player 1 is winner!!");
-    flag=1; }
-    else if (wincase("O"))
-    { console.log("Player 2 is winner");
-    window.alert("Player 2 is winner!!");
-        flag = 1; }
-    else if (counter == 9)
-    {
-        console.log("Game is draw!!");
-        window.alert("Game is Draw!!");
-    }
-}  
+    $("td").click( function(){
+        var box = $(this).attr("id");
+
+        //If the element already contains something, then we don't change it
+        if(box_f[box] != "") return;
+        if(flag==1) return;
+            counter++;
+        if(player == 1) {
+            $("#" + box).html("X");
+            box_f[box]="X";
+            player = 2; }
+
+        else {
+            $("#" + box).html("O");
+            box_f[box]="O";
+            player = 1; }
+
+        if (wincase("X"))
+        {   alert("Player 1 is winner!!");
+            flag=1; }
+        
+        else if (wincase("O"))
+        {   alert("Player 2 is winner!!");
+            flag = 1; }
+        
+        else if (counter == 9)
+        {   alert("Game is Draw!!");    }
+    } );
+    
+    
+    $("td").hover(
+           function(){
+            var id = $(this).attr("id");
+            if(box_f[id]=="" && flag!=1){
+                if(player==1){
+                    $("#" + id).html("X");  }
+                else if (player==2){
+                     $("#" + id).html("O"); }
+            }
+           },
+           function(){
+            var id = $(this).attr("id");
+            if(box_f[id]=="")
+            $("#" + id).html(""); }
+        );
+}
+);
 
 function wincase(p)
 {  
@@ -53,27 +66,4 @@ function wincase(p)
     { return 1; }
     else
     return 0;
-    
 }
-
-$(document).ready(function(){
-    $("td").hover(
-           function(){
-            var id = $(this).attr("id");
-            console.log(id);
-            if(box_f[id]=="" && flag!=1){
-                if(player==1){
-                    $("#" + id).html("X");
-              //  document.getElementById(id).innerHTML =  "X".fontsize("500%");
-                }
-                else if (player==2){
-                    document.getElementById(id).innerHTML = "O".fontsize("500%");      
-                    }
-        }
-           },
-           function(){
-            var id = $(this).attr("id");
-            if(box_f[id]=="")
-                document.getElementById(id).innerHTML = "";
-           });
-});
