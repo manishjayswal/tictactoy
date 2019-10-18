@@ -4,9 +4,7 @@
 var box_f = ["","","",
                 "","","",
                 "","",""];
-
 function display_input(box){ 
-
     var element = document.getElementById(box);
 
     //If the element already contains something, then we don't change it
@@ -40,24 +38,7 @@ function display_input(box){
         console.log("Game is draw!!");
         window.alert("Game is Draw!!");
     }
-}
-
-function mouseOver(id) {
-    if(box_f[id]=="" && flag!=1){
-        if(player==1){
-          document.getElementById(id).innerHTML =  "X".fontsize("500%");
-        }
-          else if (player==2){
-             document.getElementById(id).innerHTML = "O".fontsize("500%");      
-            }
-    }
-}
-  
-function mouseOut(id) {
-    if(box_f[id]=="")
-         document.getElementById(id).innerHTML = "";
-  }
-  
+}  
 
 function wincase(p)
 {  
@@ -74,3 +55,25 @@ function wincase(p)
     return 0;
     
 }
+
+$(document).ready(function(){
+    $("td").hover(
+           function(){
+            var id = $(this).attr("id");
+            console.log(id);
+            if(box_f[id]=="" && flag!=1){
+                if(player==1){
+                    $("#" + id).html("X");
+              //  document.getElementById(id).innerHTML =  "X".fontsize("500%");
+                }
+                else if (player==2){
+                    document.getElementById(id).innerHTML = "O".fontsize("500%");      
+                    }
+        }
+           },
+           function(){
+            var id = $(this).attr("id");
+            if(box_f[id]=="")
+                document.getElementById(id).innerHTML = "";
+           });
+});
