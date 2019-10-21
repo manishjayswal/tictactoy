@@ -1,10 +1,32 @@
  var player = 1;
  var flag=0;
  var counter=0;
-var box_f = ["","","","","","","","",""];
-
+ var n=4 ;
+ var box_f = [];
+ for (var l=1; l<=n*n; l++)
+    {
+        box_f.push("");
+    }
+    
+        document.write("<h1>"+n+"*"+n+" Tic Tac Toe</h1>");
+        var k = 0;
+        document.write("<table >");
+        for(var i = 0; i<n; i++)
+        {
+            document.write("<tr>");
+            for(var j=0; j<n; j++)
+            {
+                document.write("<td class = 'vert hori' id = " + k + " ></td>");
+                k=k+1;
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+    
+        
+    
 $(document).ready(function(){
-
+    
     $("td").click( function(){
         var box = $(this).attr("id");
 
@@ -30,7 +52,7 @@ $(document).ready(function(){
         {   alert("Player 2 is winner!!");
             flag = 1; }
         
-        else if (counter == 9)
+        else if (counter == n*n)
         {   alert("Game is Draw!!");    }
     } );
     
@@ -55,15 +77,33 @@ $(document).ready(function(){
 
 function wincase(p)
 {  
-    if ( ((box_f[0]==p) && (box_f[0]==box_f[1]) && (box_f[0]==box_f[2]))||
-            ((box_f[3]==p) && (box_f[3]==box_f[4]) && (box_f[3]==box_f[5]))||
-            ((box_f[6]==p) && (box_f[6]==box_f[7]) && (box_f[6]==box_f[8]))||
-            ((box_f[0]==p) && (box_f[0]==box_f[3]) && (box_f[0]==box_f[6]))||
-            ((box_f[1]==p) && (box_f[1]==box_f[4]) && (box_f[1]==box_f[7]))||
-            ((box_f[2]==p) && (box_f[2]==box_f[5]) && (box_f[2]==box_f[8]))||
-            ((box_f[0]==p) && (box_f[0]==box_f[4]) && (box_f[0]==box_f[8]))||
-            ((box_f[2]==p) && (box_f[2]==box_f[4]) && (box_f[2]==box_f[6])) )
-    { return 1; }
-    else
+    var win_r = [];
+    var win_c = [];
+    var win_d1 = 0;
+    var win_d2 = 0;
+    for (var l=0; l<n; l++)
+    {
+        win_r[l] = 0;
+        win_c[l] = 0;
+    }
+
+    for(var i=0; i<n; i++)
+    {  for(var j=0;j<n; j++)
+        {   if(box_f[i*n+j]==p)
+               { win_r[i]++; }
+            
+            if(box_f[i+n*j]==p) 
+                { win_c[i]++; }
+
+            if((i==j)&& (box_f[i*n+j]==p))
+                {  win_d1++; }
+        }
+
+        if(box_f[(i+1)*(n-1)]==p)
+        { win_d2++; }
+
+        if( (win_c[i]==n) || (win_r[i] == n) || (win_d1==n) || (win_d2 == n) )
+        { return 1; }
+    }
     return 0;
 }

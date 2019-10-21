@@ -5,8 +5,13 @@ h1 {
     text-align: center;
     color: cornflowerblue;
 }
+p{
+    /* text-align: center; */
+    color: azure;
+    font-size: 20px;
+}
 
-button, td {
+ td {
     width: 100px;
     height: 100px;
     text-align: center;
