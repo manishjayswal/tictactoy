@@ -9,7 +9,7 @@ class TicTac
   def get_box_positions
     loop do
       position = ask_for_box_position
-      if valid_box_position?(position)
+      if valid_move?(position)
         break if @board_object.fill_box(position, @current_player_symbol)
       else
         puts 'Invalid Position!!'
@@ -23,7 +23,7 @@ class TicTac
     gets.chomp.to_i
   end
 
-  def valid_box_position?(position)
+  def valid_move?(position)
     total_number_of_box = @table_dimension * @table_dimension
     return true if (position >= 0) && (position < total_number_of_box)
 
@@ -36,7 +36,7 @@ class TicTac
                              else
                                'O'
                              end
-    if @board_object.winning_combination?(@current_player_symbol)
+    if @board_object.has_won?(@current_player_symbol)
       puts "#{@current_player} won it."
       return true
     else
@@ -134,7 +134,7 @@ class Board
     end
   end
 
-  def winning_combination?(current_symbol)
+  def has_won?(current_symbol)
     winning_diagonal1?(current_symbol) ||
       winning_diagonal2?(current_symbol) ||
       winning_verticals?(current_symbol) ||
